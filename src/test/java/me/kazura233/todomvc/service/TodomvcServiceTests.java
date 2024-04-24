@@ -30,7 +30,7 @@ public class TodomvcServiceTests {
         addDTO.setItem("任务2");
         todomvcService.add(addDTO);
         addDTO.setItem("任务3");
-        TodomvcEntity delEntity =  todomvcService.add(addDTO);
+        TodomvcEntity delEntity = todomvcService.add(addDTO);
         addDTO.setItem("关键词吃烤肠");
         todomvcService.add(addDTO);
         addDTO.setItem("关键词吃雪糕");
@@ -51,12 +51,12 @@ public class TodomvcServiceTests {
 
         // 条件查询 关键词吃 状态未完成
         System.out.println("---------- step 5 ----------");
-        List<TodomvcEntity> list = todomvcService.find("吃",StatusEnum.TODOMVC_STATUS_ACTIVE);
+        List<TodomvcEntity> list = todomvcService.find("吃", StatusEnum.TODOMVC_STATUS_ACTIVE);
         list.forEach(System.out::println);
 
         // 条件查询 状态已完成
         System.out.println("---------- step 6 ----------");
-        list = todomvcService.find(null,StatusEnum.TODOMVC_STATUS_COMPLETED);
+        list = todomvcService.find(null, StatusEnum.TODOMVC_STATUS_COMPLETED);
         list.forEach(System.out::println);
 
         System.out.println("----------END----------");
@@ -68,16 +68,6 @@ public class TodomvcServiceTests {
         list.forEach(System.out::println);
         System.out.println("---------- findAll <<<<<<<<<<");
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Test

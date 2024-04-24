@@ -18,7 +18,7 @@ public class TodomvcService {
     @Resource
     private TodomvcRepository todomvcRepository;
 
-    public void deleteAll(){
+    public void deleteAll() {
         todomvcRepository.deleteAll();
     }
 
@@ -27,17 +27,15 @@ public class TodomvcService {
     }
 
     public List<TodomvcEntity> find(String keyword, StatusEnum status) {
-        if(keyword == null || keyword.isEmpty()){
-            return todomvcRepository.findByStatus(status);
-        }
-        return todomvcRepository.findByItemContainingAndStatus(keyword,status);
+        return todomvcRepository.search(keyword, status);
     }
+
 
     public TodomvcEntity add(TodomvcAddDTO dto) {
-        return add(dto.getItem(),StatusEnum.TODOMVC_STATUS_ACTIVE);
+        return add(dto.getItem(), StatusEnum.TODOMVC_STATUS_ACTIVE);
     }
 
-    public TodomvcEntity add(String item, StatusEnum status){
+    public TodomvcEntity add(String item, StatusEnum status) {
         TodomvcEntity entity = new TodomvcEntity();
         entity.setItem(item);
         entity.setStatus(status);
@@ -47,8 +45,8 @@ public class TodomvcService {
 
     public TodomvcEntity modify(TodomvcEntity entity) {
         Optional<TodomvcEntity> o = findById(entity.getId());
-        if(o.isEmpty()){
-            return add(entity.getItem(),entity.getStatus());
+        if (o.isEmpty()) {
+            return add(entity.getItem(), entity.getStatus());
         }
 
         TodomvcEntity e = o.get();
@@ -63,7 +61,7 @@ public class TodomvcService {
     }
 
     public Optional<TodomvcEntity> findById(Long id) {
-        if(id == null){
+        if (id == null) {
             return Optional.empty();
         }
         return todomvcRepository.findById(id);
