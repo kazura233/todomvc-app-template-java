@@ -34,10 +34,8 @@ public class TodomvcController extends BaseController {
 
     @PostMapping("/add")
     public RestResult add(@RequestBody TodomvcAddDTO body) {
-        TodomvcEntity entity = new TodomvcEntity();
-        entity.setItem(body.getItem());
 
-        todomvcService.add(entity);
+        todomvcService.add(body);
 
         return success();
     }
